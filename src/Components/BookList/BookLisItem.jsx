@@ -17,8 +17,15 @@ const BookLisItem = ({ book, onAddToCart }) => {
             <div>{author}</div>
             <div className={classes.list_item_price}>{price}$</div>
             <Button onClick={handleOnAddToCart}>Add to cart</Button>
+
+
+            
         </div>
+        
     </li>);
+
+        
+
 }
 
 export default BookLisItem;

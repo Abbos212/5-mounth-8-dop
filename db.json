@@ -31,22 +31,16 @@
   ],
   "cart": [
     {
-      "total": 180,
-      "title": "Proudction-Readi Microservices",
-      "id": 1,
-      "count": 5
-    },
-    {
-      "total": 156,
-      "title": "Harry Potter and the Sorcerer's Stone",
-      "id": 2,
-      "count": 3
-    },
-    {
-      "total": 66,
       "title": "The Seawolf",
       "id": 4,
-      "count": 3
+      "count": 14,
+      "total": 308
+    },
+    {
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "id": 2,
+      "count": 1,
+      "total": 52
     }
   ]
 }

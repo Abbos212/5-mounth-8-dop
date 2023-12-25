@@ -1,19 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Button, Spinner, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Spinner, Table, Button } from 'react-bootstrap';
-import fetchAllCartItems, { fetchToAddItem } from '../../store/reducer/CartCreated';
+import fetchAllCartItems, { fetchToAddItem, fetchToRemuveItem, fetchToDeleteItem } from '../../store/reducer/CartCreated';
+
+
+
 
 const Cart = () => {
+
+    
+
     const dispatch = useDispatch();
     const { cart, cartError, cartStatus } = useSelector((state) => state.cartList);
 
     useEffect(() => {
         dispatch(fetchAllCartItems());
     }, [])
+    function getTotalSum(){
+        let totalsum = 0
+        cart.map((book) =>{
+            totalsum += book.total
+        })
+        return totalsum
+    }
 
     const renderItem = (item, idx) => {
         const { title, id, count, total } = item;
         const onAddToCart = () => dispatch(fetchToAddItem(id));
+        const onRemuveCart = () => dispatch(fetchToRemuveItem(id));
+        const onDeleteCart = () => dispatch(fetchToDeleteItem(id));
+
 
         return (
             <tr key={`item-${id}`}>
@@ -25,10 +41,10 @@ const Cart = () => {
                     <Button onClick={onAddToCart} className="mx-1" variant='outlin-success'>
                         <i className='fa-solid fa-plus'></i>
                     </Button>
-                    <Button className="mx-1" variant='outlin-success'>
+                    <Button onClick={onRemuveCart} className="mx-1" variant='outlin-success'>
                         <i className='fa-solid fa-minus'></i>
                     </Button>
-                    <Button className="mx-1" variant='outlin-success'>
+                    <Button onClick={ onDeleteCart } className="mx-1" variant='outlin-success'>
                         <i className='fa-solid fa-trash'></i>
                     </Button>
                 </td>
@@ -55,6 +71,9 @@ const Cart = () => {
                             <th>Count</th>
                             <th>Total</th>
                             <th>Action</th>
+
+
+
                         </tr>
                     </thead>
 
@@ -68,6 +87,9 @@ const Cart = () => {
 
             }
 
+      <div>Общая цена: {
+        getTotalSum()
+        }$</div>
 
         </div>
     );
